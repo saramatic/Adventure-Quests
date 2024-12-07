@@ -1,0 +1,63 @@
+def handle_quest_giver(self, character):
+        """Handle quest giver interactions."""
+        if self.name == "Elder" and self.quest and self.quest.status == "Not Started":
+            print("You meet the Elder:")
+            print(f"Elder says: '{self.dialogue}'")
+            accept = input(f"Do you want to accept the quest '{self.quest.name}'? (yes/no): ").strip().lower()
+
+            if accept == "yes":
+                self.quest.start(character)
+                print("The Elder says: 'Thank you. You must travel to the Enchanted Castle and retrieve the Ancient Scroll to protect our village.'")
+                print(f"Quest '{self.quest.name}' has been added to your quest log.")
+            else:
+                print("The Elder says: 'Ah, adventurer, perhaps courage isn't your strength today, but I shall await your return.'")
+
+        elif self.name == "Elder" and self.quest and self.quest.status == "In Progress":
+            print(f"The Elder says: 'Have you retrieved the {self.quest.required_item}? Drop it here so I may protect the village.'")
+            if self.quest.required_item in character.inventory:
+                choice = input(f"Do you want to drop the {self.quest.required_item}? (yes/no): ").strip().lower()
+                if choice == "yes":
+                    character.remove_from_inventory(self.quest.required_item)
+                    self.quest.complete(character)
+                    print(f"The Elder says: 'You have done well, adventurer! The {self.quest.name} is complete. Our village owes you a great debt.'")
+                else:
+                    print("The Elder says: 'Return when you are ready to part with the Ancient Scroll.'")
+            else:
+                print("The Elder says: 'You have not yet retrieved the Ancient Scroll. Please return when you have it.'")
+
+        elif self.name == "Scholar" and self.quest and self.quest.status == "Not Started":
+            print("You meet the Scholar:")
+            print(f"Scholar says: '{self.dialogue}'")
+            accept = input(f"Do you want to accept the quest '{self.quest.name}'? (yes/no): ").strip().lower()
+
+            if accept == "yes":
+                self.quest.start(character)
+                print("The Scholar says: 'Thank you. Help me locate the three rare items I need to find scattered here.'")
+                print(f"Quest '{self.quest.name}' has been added to your quest log.")
+                self.present_word_search(character)
+            else:
+                print("The Scholar says: 'Oh well, perhaps you're more interested in easy adventures? I'll be here when you're ready to use your brain!'")
+
+        elif self.name == "Scholar" and self.quest and self.quest.status == "In Progress":
+            self.present_word_search(character)
+
+        elif self.name == "Mystic" and self.quest and self.quest.status == "Not Started":
+            print("You meet the Mystic:")
+            print(f"Mystic says: '{self.dialogue}'")
+            accept = input(f"Do you want to attempt the challenge '{self.quest.name}'? (yes/no): ").strip().lower()
+
+            if accept == "yes":
+                self.quest.start(character)
+                print("The Mystic says: 'Excellent. Here is your challenge:'")
+                self.present_cipher(character)
+            else:
+                print("The Mystic says: 'Not ready? Perhaps the stars will align for you another time.'")
+
+        elif self.name == "Mystic" and self.quest and self.quest.status == "In Progress":
+            self.present_cipher(character)
+
+        elif self.quest and self.quest.status == "Completed":
+            print(f"{self.name} says: 'You have already completed '{self.quest.name}'. Thank you for your help!'")
+
+        # Single prompt to exit interaction
+        input("Press Enter to continue...")

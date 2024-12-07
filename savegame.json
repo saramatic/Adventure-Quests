@@ -1,0 +1,87 @@
+{
+    "character": {
+        "name": "Nala",
+        "health": 100,
+        "strength": 10,
+        "magic": 0,
+        "gold": 10,
+        "level": 1,
+        "inventory": [
+            "Old Sword",
+            "Health Potion"
+        ],
+        "location": [
+            2,
+            1
+        ],
+        "active_quests": [
+            "Retrieve Ancient Scroll",
+            "Defend the Village"
+        ]
+    },
+    "items_at_location": {
+        "(0, 1)": [],
+        "(1, 0)": [],
+        "(1, 3)": [
+            "Magic Scroll"
+        ],
+        "(2, 2)": [
+            "Enchanted Amulet",
+            "Ancient Scroll"
+        ],
+        "(2, 3)": [
+            "Shield"
+        ],
+        "(4, 4)": [
+            "Ancient Relic"
+        ]
+    },
+    "quests": [
+        {
+            "name": "Retrieve Ancient Scroll",
+            "description": "Find and return the scroll to the wizard.",
+            "status": "In Progress"
+        },
+        {
+            "name": "Defend the Village",
+            "description": "Help defend the village from enemy attack.",
+            "status": "In Progress"
+        },
+        {
+            "name": "Find the Magic Key",
+            "description": "Locate the magic key hidden in the Ancient Ruins.",
+            "status": "Not Started"
+        }
+    ],
+    "visited_locations": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            1
+        ],
+        [
+            1,
+            1
+        ],
+        [
+            2,
+            0
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            1,
+            0
+        ]
+    ],
+    "npc_interactions": {}
+}
